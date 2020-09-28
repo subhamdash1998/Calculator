@@ -1,0 +1,26 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo apt-get update -y
+            sudo apt install apt-transport-https ca-certificates curl software-properties-common
+            sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+            sudo apt-get update -y
+            sudo apt install docker-ce
+      - run:
+          name: pulling the image and running it
+          command: |
+            docker pull subhamdash1998/calculator:latest
+            docker container run --name calulator subhamdash1998/calculator 
+      - run:
+          name: stoping the container and removing it
+          command: |
+            docker stop calulator
+            docker rm calulator
+            docker rmi subhamdash1998/calculator
