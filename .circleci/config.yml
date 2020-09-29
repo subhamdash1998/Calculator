@@ -3,15 +3,15 @@ jobs:
   build:
     docker:
         - image: cibuilds/docker:19.03
-      steps:
-        - checkout
-        - setup_remote_docker:
-            #available on performance plan
-            docker_layer_caching: true
-        - run: 
-            name: Build Docker image
-            command: |
-              TAG=0.1.$CIRCLE_BUILD_NUM
-              docker build -t subhamdash1998/calculator:$TAG .
-              echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-              docker push subhamdash1998/calculator:$TAG
+    steps:
+      - checkout
+      - setup_remote_docker:
+          #available on performance plan
+          docker_layer_caching: true
+      - run: 
+          name: Build Docker image
+          command: |
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            docker build -t subhamdash1998/calculator:$TAG .
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+            docker push subhamdash1998/calculator:$TAG
