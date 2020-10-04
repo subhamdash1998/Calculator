@@ -13,12 +13,6 @@ jobs:
             docker build -t subhamdash1998/calculator:$TAG .
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push subhamdash1998/calculator:$TAG
-      - add_ssh_keys:
-            fingerprints:
-              - "5b:ac:fb:be:0d:1a:3f:f5:3d:e0:f3:db:bf:ab:fc:63"
-      - run:
-          name: Pulling the docker image
-          command: |
-            ssh ec2-user@xyz.com "docker pull subhamdash1998/calculator:$TAG"
+
             
             
