@@ -19,6 +19,6 @@ jobs:
       - run:
           name: Pulling the docker image
           command: |
-            ssh ec2-user@xyz.com "docker run subhamdash1998/calculator:$TAG"
+            ssh ec2-user@xyz.com "docker pull subhamdash1998/calculator:$TAG"
             
             
